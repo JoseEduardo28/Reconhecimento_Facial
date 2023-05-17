@@ -28,7 +28,7 @@ def captura_imagens(directory, capture_time, wait_time):
     - wait_time (int): Tempo de espera antes de fechar a janela em segundos.
     """
     # Diretório onde as capturas serão salvas
-    diretorio = 'D:\\Projetos\\Python\\TCC\\fotos\\' + directory + "\\"
+    diretorio = 'Caminho até o diretório' + directory + "\\"
 
     # Cria o diretório se ele não existir
     if not os.path.exists(diretorio):
