@@ -45,3 +45,17 @@ Definição da função flip_image que gira a imagem horizontalmente (espelha).
 Verificação se o módulo está sendo executado diretamente como programa principal.
 Leitura dos diretórios de origem e destino das fotos.
 Chamada da função load_directory para pré-processar e salvar as fotos com as faces extraídas.
+
+----------------------------------------------------------------------------------------------------------------------
+Comparador.py
+
+Neste código, foram adicionadas as seguintes funções para realizar a comparação de embeddings:
+
+Função carregar_embeddings: Carrega as embeddings de um arquivo Excel.
+Função calcular_similaridade: Calcula a similaridade entre duas embeddings.
+Função comparar_embeddings: Compara todas as combinações de embeddings e determina se são semelhantes.
+Carregamento das embeddings a partir de um arquivo Excel.
+Comparação das embeddings e determinação das embeddings semelhantes.
+Impressão das embeddings semelhantes, sua similaridade e separadores.
+Para utilizar o comparador de embeddings, você precisa fornecer o caminho para o arquivo Excel contendo as embeddings na função carregar_embeddings. Além disso, você pode ajustar o valor do limiar de similaridade threshold na função
+
