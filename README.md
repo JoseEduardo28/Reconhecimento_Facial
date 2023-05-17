@@ -57,5 +57,5 @@ Função comparar_embeddings: Compara todas as combinações de embeddings e det
 Carregamento das embeddings a partir de um arquivo Excel.
 Comparação das embeddings e determinação das embeddings semelhantes.
 Impressão das embeddings semelhantes, sua similaridade e separadores.
-Para utilizar o comparador de embeddings, você precisa fornecer o caminho para o arquivo Excel contendo as embeddings na função carregar_embeddings. Além disso, você pode ajustar o valor do limiar de similaridade threshold na função
+Para utilizar o comparador de embeddings, você precisa fornecer o caminho para o arquivo Excel contendo as embeddings na função carregar_embeddings. Além disso, você pode ajustar o valor do limiar de similaridade threshold na função comparar_embeddings para definir quando considerar duas embeddings como semelhantes.
 
