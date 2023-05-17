@@ -18,7 +18,7 @@ import time
 from keras.models import load_model
 
 
-def capture_images(directory, capture_time, wait_time):
+def captura_imagens(directory, capture_time, wait_time):
     """
     Captura imagens usando a webcam e as salva em um diretório específico.
 
@@ -83,4 +83,4 @@ tempo_captura = 3
 tempo_espera = 5
 
 # Captura as imagens e salva no diretório especificado
-capture_images(nome, tempo_captura, tempo_espera)
+captura_imagens(nome, tempo_captura, tempo_espera)
