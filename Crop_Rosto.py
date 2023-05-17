@@ -18,95 +18,95 @@ from os.path import isdir
 from numpy import asarray
 
 
-def extract_face(image_file, size=(160, 160)):
+def extrair_face(arquivo_imagem, tamanho=(160, 160)):
     """
-    Extrai a face de uma imagem.
+    Extrai o rosto de uma imagem.
 
     Parâmetros:
-    - image_file (str): Caminho para o arquivo da imagem.
-    - size (tuple): Tamanho desejado para a face extraída.
+    - arquivo_imagem (str): Caminho para o arquivo da imagem.
+    - tamanho (tuple): Tamanho desejado para o rosto extraído.
 
     Retorna:
-    - imagem (PIL.Image): Imagem da face extraída.
+    - imagem (PIL.Image): Imagem do rosto extraído.
     """
     # Carrega a imagem
-    img = Image.open(image_file)
-    img = img.convert('RGB')
-    array = asarray(img)
+    imagem = Image.open(arquivo_imagem)
+    imagem = imagem.convert('RGB')
+    array = asarray(imagem)
 
-    # Detecta as faces na imagem
+    # Detecta os rostos na imagem
     detector = MTCNN()
-    results = detector.detect_faces(array)
+    resultados = detector.detect_faces(array)
 
-    # Extrai a primeira face encontrada
-    x1, y1, width, height = results[0]['box']
-    x2, y2 = x1 + width, y1 + height
-    face = array[y1:y2, x1:x2]
+    # Extrai o primeiro rosto encontrado
+    x1, y1, largura, altura = resultados[0]['box']
+    x2, y2 = x1 + largura, y1 + altura
+    rosto = array[y1:y2, x1:x2]
 
-    # Redimensiona a face para o tamanho desejado
-    image = Image.fromarray(face)
-    image = image.resize(size)
+    # Redimensiona o rosto para o tamanho desejado
+    imagem = Image.fromarray(rosto)
+    imagem = imagem.resize(tamanho)
 
-    return image
+    return imagem
 
 
-def load_photos(source_directory, target_directory):
+def carregar_fotos(diretorio_origem, diretorio_destino):
     """
-    Pré-processa e salva as fotos com as faces extraídas.
+    Pré-processa e salva as fotos com os rostos extraídos.
 
     Parâmetros:
-    - source_directory (str): Diretório de origem das fotos.
-    - target_directory (str): Diretório de destino das fotos com as faces extraídas.
+    - diretorio_origem (str): Diretório de origem das fotos.
+    - diretorio_destino (str): Diretório de destino das fotos com os rostos extraídos.
     """
-    for filename in listdir(source_directory):
-        file_path = source_directory + filename
-        target_path = target_directory + filename
-        flipped_target_path = target_directory + "flip" + filename
+    for nome_arquivo in listdir(diretorio_origem):
+        arquivo_imagem = diretorio_origem + nome_arquivo
+        arquivo_destino = diretorio_destino + nome_arquivo
+        arquivo_destino_virado = diretorio_destino + "flip_" + nome_arquivo
         try:
-            # Extrai a face da foto
-            face = extract_face(file_path)
+            # Extrai o rosto da foto
+            rosto = extrair_face(arquivo_imagem)
 
-            # Gera uma versão espelhada da face
-            flipped_face = flip_image(face)
+            # Gera uma versão espelhada do rosto
+            rosto_virado = imagem_virada(rosto)
 
-            # Salva as faces nos diretórios de destino
-            face.save(target_path, "JPEG", quality=100, optimize=True, progressive=True)
-            flipped_face.save(flipped_target_path, "JPEG", quality=100, optimize=True, progressive=True)
+            # Salva os rostos nos diretórios de destino
+            rosto.save(arquivo_destino, "JPEG", quality=100, optimize=True, progressive=True)
+            rosto_virado.save(arquivo_destino_virado, "JPEG", quality=100, optimize=True, progressive=True)
         except:
-            print("Erro na imagem {}".format(file_path))
+            print("Erro na imagem {}".format(arquivo_imagem))
 
 
-def load_directory(source_directory, target_directory):
+def carregar_diretorio(diretorio_origem, diretorio_destino):
     """
-    Pré-processa e salva as fotos com as faces extraídas de um diretório e seus subdiretórios.
+    Pré-processa e salva as fotos com os rostos extraídos de um diretório e seus subdiretórios.
 
     Parâmetros:
-    - source_directory (str): Diretório de origem das fotos.
-    - target_directory (str): Diretório de destino das fotos com as faces extraídas.
+    - diretorio_origem (str): Diretório de origem das fotos.
+    - diretorio_destino (str): Diretório de destino das fotos com os rostos extraídos.
     """
-    for subdir in listdir(source_directory):
-        path = source_directory + subdir + "\\"
-        target_path = target_directory + subdir + "\\"
-        if not isdir(path):
+    for subdir in listdir(diretorio_origem):
+        caminho = diretorio_origem + subdir + "\\"
+        caminho_destino = diretorio_destino + subdir + "\\"
+        if not isdir(caminho):
             continue
-        load_photos(path, target_path)
+        carregar_fotos(caminho, caminho_destino)
 
 
-def flip_image(image):
+def imagem_virada(imagem):
     """
     Gira a imagem horizontalmente (espelha).
 
     Parâmetros:
-    - image (PIL.Image): Imagem a ser espelhada.
+    - imagem (PIL.Image): Imagem a ser espelhada.
 
     Retorna:
-    - flipped_image (PIL.Image): Imagem espelhada.
+    - imagem_espelhada (PIL.Image): Imagem espelhada.
     """
-    flipped_image = image.transpose(Image.FLIP_LEFT_RIGHT)
-    return flipped_image
+    imagem_espelhada = imagem.transpose(Image.FLIP_LEFT_RIGHT)
+    return imagem_espelhada
 
 
 if __name__ == '__main__':
-    source_directory = "D:\\Projetos\\Python\\TCC\\fotos\\"  # Colocar o caminho até as fotos originais
-    target_directory = "D:\\Projetos\\Python\\TCC\\faces\\"  # Colocar o caminho para salvar as faces extraídas
-    load_directory(source_directory, target_directory)
+    diretorio_origem = ""  # Colocar o caminho até as fotos originais
+    diretorio_destino = ""  # Colocar o caminho para salvar os rostos extraídos
+    carregar_diretorio(diretorio_origem, diretorio_destino)
