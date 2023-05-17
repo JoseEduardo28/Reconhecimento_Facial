@@ -18,6 +18,8 @@ Geração das embeddings das imagens.
 Criação de um DataFrame com as embeddings e os nomes dos diretórios.
 Salvamento do DataFrame em um arquivo Excel.
 
+----------------------------------------------------------------------------------------------------------------------
+
 Cadastrar_rosto.py:
 
 Esse código contém uma função capture_images que captura imagens usando a webcam e as salva em um diretório específico. O código está estruturado da seguinte maneira:
@@ -28,6 +30,8 @@ Leitura do nome do diretório onde as imagens serão salvas.
 Definição do tempo de captura em segundos.
 Definição do tempo de espera antes de fechar a janela em segundos.
 Chamada da função capture_images para capturar e salvar as imagens.
+
+----------------------------------------------------------------------------------------------------------------------
 
 Crop_rosto.py:
 
